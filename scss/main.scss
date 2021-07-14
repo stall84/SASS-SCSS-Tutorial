@@ -1,8 +1,9 @@
-// SASS Variables
-// Merely need to use $
-$primary-color: #272727;
-$accent-color: #ff652f;
-$text-color: #ffffff;
+// SASS Partials:  Allows composition of sass 'snippets' .. Compliments modularization of CSS in larger projects
+// Partials are denoted by a leading underscore: ( _example )
+// The underscore lets Sass know that the file is only a partial file and that it should not be generated into a CSS file.
+// Sass partials are used with the @use rule. And can be imported with @import
+@import "./resets";
+@import "./variables";
 
 // SASS Maps (Lists of key-value pairs) - uses parenthesis instead of brackets
 // To access the map use map-get('map-name', 'key(no string quotes when accessing)')
@@ -23,12 +24,20 @@ body {
   font-weight: map-get($map: $font-weights, $key: bold);
 }
 
+// Nesting is very simple and straighforward in SASS.. See the example below where we want to work with nesting a paragraph class inside our main class, then we further nest
+// a hover on the nested main_para_1
+
 .main {
   width: 80%;
   margin: 0 auto;
   // In SASS & (ampersand) equals the parent .. So in this current case we're targeting the paragraph held within (nested) the parent, which is the main class
-  & p {
+  // In this instance we need to use interpolation with #{} to wrap the parent token (&) .. otherwise it would compile the class on it's own outside of the main class parent
+  #{&}_para_1 {
     font-weight: map-get($map: $font-weights, $key: light);
     color: $accent-color;
+  }
+  // Use ampersand again to equal the parent.. in this case it's the main_para_2 class
+  #{&}_para_2:hover {
+    color: pink;
   }
 }
