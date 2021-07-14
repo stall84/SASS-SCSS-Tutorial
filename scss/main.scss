@@ -1,4 +1,5 @@
 // SASS Variables
+// Merely need to use $
 $primary-color: #272727;
 $accent-color: #ff652f;
 $text-color: #ffffff;
@@ -20,4 +21,14 @@ body {
 
 .header {
   font-weight: map-get($map: $font-weights, $key: bold);
+}
+
+.main {
+  width: 80%;
+  margin: 0 auto;
+  // In SASS & (ampersand) equals the parent .. So in this current case we're targeting the paragraph held within (nested) the parent, which is the main class
+  & p {
+    font-weight: map-get($map: $font-weights, $key: light);
+    color: $accent-color;
+  }
 }
