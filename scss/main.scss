@@ -1,0 +1,23 @@
+// SASS Variables
+$primary-color: #272727;
+$accent-color: #ff652f;
+$text-color: #ffffff;
+
+// SASS Maps (Lists of key-value pairs) - uses parenthesis instead of brackets
+// To access the map use map-get('map-name', 'key(no string quotes when accessing)')
+$font-weights: (
+  "light": 200,
+  "regular": 400,
+  "medium": 600,
+  "bold": 800,
+);
+
+body {
+  background-color: $primary-color;
+  color: $text-color;
+  font-weight: map-get($map: $font-weights, $key: regular);
+}
+
+.header {
+  font-weight: map-get($map: $font-weights, $key: bold);
+}
